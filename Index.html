@@ -1,0 +1,426 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DCH Gaming Hub</title>  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      background:#050505;
+      color:white;
+      font-family:'Poppins',sans-serif;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:'';
+      position:fixed;
+      inset:0;
+      background:
+      radial-gradient(circle at top left, rgba(57,255,20,0.15), transparent 30%),
+      radial-gradient(circle at bottom right, rgba(138,43,226,0.18), transparent 30%);
+      z-index:-1;
+    }
+
+    header{
+      padding:18px 7%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(0,0,0,0.6);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .logo{
+      font-family:'Orbitron',sans-serif;
+      font-size:1.4rem;
+      color:#39ff14;
+      font-weight:700;
+      text-shadow:0 0 15px rgba(57,255,20,0.6);
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      margin-left:20px;
+      font-size:0.95rem;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      color:#39ff14;
+    }
+
+    .hero{
+      min-height:95vh;
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:40px 7%;
+    }
+
+    .hero::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1600&auto=format&fit=crop') center/cover;
+      opacity:0.18;
+      z-index:-2;
+    }
+
+    .hero::after{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.85));
+      z-index:-1;
+    }
+
+    .hero-content{
+      max-width:850px;
+    }
+
+    .tag{
+      display:inline-block;
+      padding:8px 18px;
+      border-radius:999px;
+      background:rgba(57,255,20,0.12);
+      border:1px solid rgba(57,255,20,0.25);
+      color:#39ff14;
+      margin-bottom:20px;
+      font-size:0.9rem;
+    }
+
+    .hero h1{
+      font-family:'Orbitron',sans-serif;
+      font-size:4.2rem;
+      line-height:1.2;
+      margin-bottom:20px;
+      text-shadow:0 0 20px rgba(57,255,20,0.25);
+    }
+
+    .hero h1 span{
+      color:#39ff14;
+    }
+
+    .hero p{
+      color:#d2d2d2;
+      line-height:1.8;
+      font-size:1.1rem;
+      max-width:700px;
+      margin:auto;
+    }
+
+    .hero-buttons{
+      margin-top:35px;
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:14px 28px;
+      border-radius:14px;
+      text-decoration:none;
+      font-weight:600;
+      transition:0.3s ease;
+    }
+
+    .primary-btn{
+      background:#39ff14;
+      color:black;
+      box-shadow:0 0 20px rgba(57,255,20,0.4);
+    }
+
+    .primary-btn:hover{
+      transform:translateY(-3px);
+      box-shadow:0 0 28px rgba(57,255,20,0.7);
+    }
+
+    .secondary-btn{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.12);
+      color:white;
+    }
+
+    .secondary-btn:hover{
+      background:rgba(255,255,255,0.1);
+    }
+
+    section{
+      padding:90px 7%;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:50px;
+    }
+
+    .section-title h2{
+      font-family:'Orbitron',sans-serif;
+      font-size:2.5rem;
+      margin-bottom:10px;
+    }
+
+    .section-title p{
+      color:#bfbfbf;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:28px;
+    }
+
+    .card{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:24px;
+      padding:32px;
+      backdrop-filter:blur(12px);
+      transition:0.35s ease;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card::before{
+      content:'';
+      position:absolute;
+      width:140px;
+      height:140px;
+      border-radius:50%;
+      background:rgba(57,255,20,0.08);
+      top:-60px;
+      right:-50px;
+    }
+
+    .card:hover{
+      transform:translateY(-8px);
+      border-color:rgba(57,255,20,0.3);
+      box-shadow:0 0 28px rgba(57,255,20,0.15);
+    }
+
+    .game-image{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+      border-radius:18px;
+      margin-bottom:22px;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .card h3{
+      font-size:1.8rem;
+      margin-bottom:15px;
+      color:#39ff14;
+    }
+
+    .card p{
+      color:#d0d0d0;
+      line-height:1.7;
+      margin-bottom:20px;
+    }
+
+    .price{
+      display:inline-block;
+      padding:10px 18px;
+      border-radius:999px;
+      background:rgba(57,255,20,0.12);
+      color:#39ff14;
+      font-weight:600;
+    }
+
+    .offer-box{
+      background:linear-gradient(135deg, rgba(57,255,20,0.15), rgba(138,43,226,0.18));
+      border:1px solid rgba(57,255,20,0.25);
+      border-radius:28px;
+      padding:45px;
+      text-align:center;
+      max-width:800px;
+      margin:auto;
+      box-shadow:0 0 30px rgba(57,255,20,0.12);
+    }
+
+    .offer-box h2{
+      font-family:'Orbitron',sans-serif;
+      font-size:2.6rem;
+      margin-bottom:15px;
+    }
+
+    .offer-box p{
+      color:#d7d7d7;
+      margin-bottom:25px;
+      line-height:1.7;
+    }
+
+    .offer-highlight{
+      font-size:2rem;
+      color:#39ff14;
+      font-weight:700;
+      margin-bottom:18px;
+    }
+
+    .contact-box{
+      text-align:center;
+      background:rgba(255,255,255,0.04);
+      border-radius:28px;
+      padding:45px;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .contact-box h2{
+      font-family:'Orbitron',sans-serif;
+      margin-bottom:18px;
+      font-size:2.3rem;
+    }
+
+    .contact-box p{
+      color:#d2d2d2;
+      margin-bottom:14px;
+    }
+
+    footer{
+      text-align:center;
+      padding:30px;
+      color:#999;
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
+
+    @media(max-width:768px){
+      .hero h1{
+        font-size:2.7rem;
+      }
+
+      nav{
+        display:none;
+      }
+
+      .section-title h2,
+      .offer-box h2{
+        font-size:2rem;
+      }
+
+      .offer-highlight{
+        font-size:1.6rem;
+      }
+    }
+  </style></head>
+<body><header>
+  <div class="logo">DCH Gaming Hub</div>  <nav>
+    <a href="#gaming">Gaming</a>
+    <a href="#offers">Offers</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header><section class="hero">
+  <div class="hero-content"><div class="tag">🎮 PS4 • 🥽 VR Experience</div>
+
+<h1>LEVEL UP YOUR <span>GAMING EXPERIENCE</span></h1>
+
+<p>
+  Experience immersive VR gaming and exciting PS4 multiplayer action at DCH Gaming Hub. Chill, compete and enjoy next-level gaming vibes.
+</p>
+
+<div class="hero-buttons">
+  <a href="#offers" class="btn primary-btn">View Offers</a>
+  <a href="wallet.html" class="btn secondary-btn">
+  Open Wallet
+</a>
+</div>
+
+  </div>
+</section><section id="gaming">  <div class="section-title">
+    <h2>Gaming Zones</h2>
+    <p>Enjoy premium gaming experiences at DCH Gaming Hub.</p>
+  </div>  <div class="cards"><div class="card">
+  <img class="game-image" src="https://images.unsplash.com/photo-1486572788966-cfd3df1f5b42?q=80&w=1200&auto=format&fit=crop" alt="PS4 Gaming">
+
+  <h3>🎮 PS4 Gaming</h3>
+
+  <p>
+    Enjoy FIFA, WWE, racing games and exciting multiplayer matches with your friends.
+  </p>
+
+  <span class="price">₹100 / Hour</span>
+</div>
+
+<div class="card">
+  <img class="game-image" src="https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?q=80&w=1200&auto=format&fit=crop" alt="VR Gaming">
+
+  <h3>🥽 VR Experience</h3>
+
+  <p>
+    Dive into immersive virtual reality gaming with thrilling VR adventures and experiences.
+  </p>
+
+  <span class="price">₹100 / 30 Mins</span>
+</div>
+
+  </div>
+</section><section id="offers">  <div class="offer-box">
+    <h2>Grand Welcome Offer</h2><div class="offer-highlight">
+  Recharge ₹100 → Get ₹120 Play Balance
+</div>
+
+<p>
+  Start your gaming journey with bonus gaming credits and enjoy more play time at DCH Gaming Hub.
+</p>
+
+<a href="#contact" class="btn primary-btn">Claim Offer</a>
+
+  </div></section><section id="contact">  <div class="contact-box">
+    <h2>Visit DCH Gaming Hub</h2><p>📍 Near Bharat Petrol Pump, Sanjay Nagar, Dhamnod</p>
+
+<p>📞 8982628715</p>
+
+<div class="hero-buttons">
+  <a href="tel:8982628715" class="btn primary-btn">Call Now</a>
+
+  <a href="https://wa.me/918982628715" class="btn secondary-btn">WhatsApp</a>
+</div>
+
+  </div></section><footer>
+  © 2026 DCH Gaming Hub • Play • Compete • Experience VR
+</footer>  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    const cards = document.querySelectorAll('.card');
+
+    window.addEventListener('scroll', () => {
+      cards.forEach(card => {
+        const top = card.getBoundingClientRect().top;
+
+        if(top < window.innerHeight - 80){
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }
+      });
+    });
+
+    cards.forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(40px)';
+      card.style.transition = '0.6s ease';
+    });
+  </script></body>
+</html>
