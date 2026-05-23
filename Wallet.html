@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>DCH Wallet</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      background:#050505;
+      color:white;
+      font-family:'Poppins',sans-serif;
+
+      min-height:100vh;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      overflow:hidden;
+      position:relative;
+    }
+
+    /* Background Glow */
+
+    body::before{
+      content:'';
+
+      position:absolute;
+      inset:0;
+
+      background:
+      radial-gradient(circle at top left, rgba(57,255,20,0.15), transparent 30%),
+      radial-gradient(circle at bottom right, rgba(138,43,226,0.15), transparent 30%);
+
+      z-index:-2;
+    }
+
+    /* Particles */
+
+    body::after{
+      content:'';
+
+      position:absolute;
+      inset:0;
+
+      background-image:
+      radial-gradient(#39ff14 1px, transparent 1px);
+
+      background-size:40px 40px;
+
+      opacity:0.08;
+
+      animation:moveParticles 20s linear infinite;
+
+      z-index:-1;
+    }
+
+    @keyframes moveParticles{
+      from{
+        transform:translateY(0);
+      }
+
+      to{
+        transform:translateY(-40px);
+      }
+    }
+
+    /* Main Card */
+
+    .wallet-container{
+      width:90%;
+      max-width:420px;
+
+      background:rgba(255,255,255,0.05);
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      border-radius:30px;
+
+      padding:35px;
+
+      backdrop-filter:blur(18px);
+
+      text-align:center;
+
+      box-shadow:
+      0 0 30px rgba(57,255,20,0.12);
+    }
+
+    .logo{
+      font-family:'Orbitron',sans-serif;
+
+      font-size:1.8rem;
+
+      color:#39ff14;
+
+      margin-bottom:10px;
+
+      text-shadow:
+      0 0 15px rgba(57,255,20,0.6);
+    }
+
+    .subtitle{
+      color:#cfcfcf;
+      margin-bottom:30px;
+      font-size:0.95rem;
+    }
+
+    /* Input */
+
+    .input-box{
+      width:100%;
+
+      padding:15px;
+
+      border:none;
+
+      outline:none;
+
+      border-radius:14px;
+
+      background:rgba(255,255,255,0.08);
+
+      color:white;
+
+      margin-bottom:18px;
+
+      font-size:1rem;
+    }
+
+    .input-box::placeholder{
+      color:#bcbcbc;
+    }
+
+    /* Button */
+
+    .login-btn{
+      width:100%;
+
+      padding:15px;
+
+      border:none;
+
+      border-radius:14px;
+
+      background:#39ff14;
+
+      color:black;
+
+      font-weight:700;
+
+      font-size:1rem;
+
+      cursor:pointer;
+
+      transition:0.3s;
+    }
+
+    .login-btn:hover{
+      transform:translateY(-3px);
+
+      box-shadow:
+      0 0 20px #39ff14,
+      0 0 40px rgba(57,255,20,0.6);
+    }
+
+    /* Wallet Card */
+
+    .wallet-card{
+      display:none;
+
+      margin-top:28px;
+
+      background:rgba(255,255,255,0.05);
+
+      border-radius:24px;
+
+      padding:28px;
+
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .wallet-card h2{
+      font-family:'Orbitron',sans-serif;
+      margin-bottom:10px;
+    }
+
+    .member-id{
+      color:#39ff14;
+      margin-bottom:18px;
+      font-size:0.95rem;
+    }
+
+    .balance{
+      font-size:2.5rem;
+      font-weight:700;
+      color:#39ff14;
+
+      margin-bottom:8px;
+    }
+
+    .balance-text{
+      color:#cfcfcf;
+      margin-bottom:22px;
+    }
+
+    .wallet-btn{
+      display:inline-block;
+
+      padding:12px 22px;
+
+      border-radius:12px;
+
+      background:#39ff14;
+
+      color:black;
+
+      text-decoration:none;
+
+      font-weight:600;
+    }
+
+    .wallet-btn:hover{
+      box-shadow:
+      0 0 20px #39ff14;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="wallet-container">
+
+    <div class="logo">
+      DCH Wallet
+    </div>
+
+    <div class="subtitle">
+      Login using your phone number
+    </div>
+
+    <input
+    type="tel"
+    id="phoneInput"
+    class="input-box"
+    placeholder="Enter Phone Number">
+
+    <button class="login-btn" onclick="loginUser()">
+      Login
+    </button>
+
+    <!-- Wallet Card -->
+
+    <div class="wallet-card" id="walletCard">
+
+      <h2 id="userName">
+        Welcome Gamer
+      </h2>
+
+      <div class="member-id" id="memberId">
+        Member ID: DCH001
+      </div>
+
+      <div class="balance" id="walletBalance">
+        ₹120
+      </div>
+
+      <div class="balance-text">
+        Current Gaming Balance
+      </div>
+
+      <a href="https://wa.me/918982628715" class="wallet-btn">
+        Recharge Now
+      </a>
+
+    </div>
+
+  </div>
+
+  <script>
+
+async function loginUser(){
+
+  const phone =
+  document.getElementById("phoneInput").value;
+
+  const apiURL =
+  "https://script.google.com/macros/s/AKfycbwWGvTirP61lS8eKK_j0zwTnZZ-4UJDkD_eyv5hfVU06Y2wwUSjaDod6KAqzg7zg27D/exec";
+
+  try{
+
+    const response = await fetch(apiURL);
+
+    const users = await response.json();
+
+    const user =
+    users.find(
+      u => u.phone == phone
+    );
+
+    if(user){
+
+      document
+      .getElementById("walletCard")
+      .style.display = "block";
+
+      document
+      .getElementById("userName")
+      .innerText =
+      "Welcome " + user.name;
+
+      document
+      .getElementById("walletBalance")
+      .innerText =
+      "₹" + user.balance;
+
+      document
+      .getElementById("memberId")
+      .innerText =
+      "Member ID: " + user.member;
+
+    }
+
+    else{
+
+      alert("User not found");
+
+    }
+
+  }
+
+  catch(error){
+
+    alert("Error loading data");
+
+    console.log(error);
+
+  }
+
+}
+
+</script>
+
+</body>
+
+</html>
